@@ -16,14 +16,30 @@ const server = http.createServer((req,res) => {
         case '.json':
             contentType = 'application/json';
             break;
+        case '.md':
+            contentType = 'text/html';
+            break;
     }
-    fs.readFile(filePath, (err,content) => {
+    fs.readFile(filePath, async (err,content) => {
         if (err) {
             res.writeHead(404, {'Content-Type': 'text/html'});
             res.end('Not Found');
         } else {
+            const { marked } = await import('marked');
+            const html = req.url.indexOf('.md') === -1 ? content : `
+            <html>
+                <head>
+                <meta charset="utf-8">
+                <title>Markdown 渲染</title>
+                </head>
+                <body>
+                ${marked(content.toString())}
+                </body>
+            </html>
+            `;
+            console.log(req.url)
             res.writeHead(200, {'Content-Type': contentType});
-            res.end(content, 'utf-8');
+            res.end(html, 'utf-8');
         }
     })
 })
