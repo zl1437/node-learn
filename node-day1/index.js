@@ -2,11 +2,11 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 
-const server = http.createServer((req,res) => {
-    let filePath = path.join(__dirname, 'page', req.url === '/' ? 'index.html' : req.url);
+const server = http.createServer((req, res) => {
+    let filePath = path.join(__dirname, './', req.url === '/' ? 'index.html' : req.url);
     let extname = path.extname(filePath);
     let contentType = 'text/html';
-    switch(extname) {
+    switch (extname) {
         case '.js':
             contentType = 'text/javascript';
             break;
@@ -20,9 +20,9 @@ const server = http.createServer((req,res) => {
             contentType = 'text/html';
             break;
     }
-    fs.readFile(filePath, async (err,content) => {
+    fs.readFile(filePath, async (err, content) => {
         if (err) {
-            res.writeHead(404, {'Content-Type': 'text/html'});
+            res.writeHead(404, { 'Content-Type': 'text/html' });
             res.end('Not Found');
         } else {
             const { marked } = await import('marked');
@@ -37,8 +37,7 @@ const server = http.createServer((req,res) => {
                 </body>
             </html>
             `;
-            console.log(req.url)
-            res.writeHead(200, {'Content-Type': contentType});
+            res.writeHead(200, { 'Content-Type': contentType });
             res.end(html, 'utf-8');
         }
     })
