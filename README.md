@@ -1,10 +1,10 @@
 # node学习日志
 ## Day 1 - Node 基础入门
-安装 Node.js、配置 nvm、npm/yarn/pnpm 使用
+- 安装 Node.js、配置 nvm、npm/yarn/pnpm 使用
 
-了解事件循环机制
-掌握核心模块：fs、path、http、url、events
-简单搭建 HTTP 服务，返回 HTML
+- 了解事件循环机制
+- 掌握核心模块：fs、path、http、url、events
+- 简单搭建 HTTP 服务，返回 HTML
 
 练习：
 写一个静态文件服务器，支持 GET 请求返回 HTML/CSS/JS 文件
