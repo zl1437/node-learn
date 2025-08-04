@@ -7,8 +7,8 @@ import fs from 'fs'
 
 // fs.promises.readFile('not_exist.txt')
 //   .catch(err => console.error('文件读取失败：', err));
-fs.promises.readFile('not_exist.txt')
-  .catch();
+// fs.promises.readFile('not_exist.txt')
+//   .catch();
 
 // process.on('uncaughtException', err => {
 //   console.error('未捕获异常：', err);
