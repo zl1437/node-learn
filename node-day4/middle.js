@@ -1,3 +1,4 @@
+import http from 'http'
 const middlewareStack = [];
 
 function use(fn) {
